@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aks-store-demo-workflow
+  labels:
+    app: aks-store-demo-workflow
+    kubernetes.azure.com/generator: devhub
+  namespace: aks-store-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aks-store-demo-workflow
+  template:
+    metadata:
+      labels:
+        app: aks-store-demo-workflow
+    spec:
+      containers:
+        - name: aks-store-demo-workflow
+          image: acrworkflow1721170239196.azurecr.io/image-workflow-1721170239196:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
